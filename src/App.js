@@ -1,7 +1,7 @@
 import Home from "./components/Routes/Home/Home.component";
-import { Routes, Route, Outlet, Link} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Navbar from "./components/Routes/Navigation/Navbar.component";
-import SignIn from "./components/Routes/sign-in/sign-in.component";
+import AuthenticationPage from "./components/Routes/Authentication-page/Authentication-page.component";
 
 const Test = () => {
   return (
@@ -26,7 +26,7 @@ const App = () => {
       <Route path='/' element={<Navbar />} >
         <Route index element={<Home />} />
         <Route path='/test' element={<Test />} />
-        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/authentication' element={<AuthenticationPage />} />
       </Route>
     </Routes>
   );
