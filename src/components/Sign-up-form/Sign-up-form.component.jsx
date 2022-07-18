@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createUserDocumentFromAuth, signUpWithGoogleEmailAndPassword } from "../../utils/Firebase/firebase.utils"
+import { signUpWithGoogleEmailAndPassword } from "../../utils/Firebase/firebase.utils"
 import Button from "../Lib/Button/Button.component"
 import FormInput from "../Lib/form-input/Form-input.component"
 import './sign-up-form.styles.scss'
@@ -12,6 +12,7 @@ const defaultFormValues = {
 }
 
 const SignUpForm = () => {
+
 
     const resetFields = () => {
         setDefaultValues(defaultFormValues)
@@ -28,12 +29,11 @@ const SignUpForm = () => {
         e.preventDefault()
         if (password === confirmPassword) {
             try {
-                const { user } = await signUpWithGoogleEmailAndPassword(email, password)
-                await createUserDocumentFromAuth(user, { displayName })
+                await signUpWithGoogleEmailAndPassword(email, password)
                 resetFields()
             } catch (error) {
                 error.code === 'auth/email-already-in-use' && alert('Email already in use')
-                console.log('error', error.message)
+                console.log('error', error.code)
             }
            
         } else {

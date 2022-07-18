@@ -1,8 +1,8 @@
+import { useState } from "react"
 import Button from "../Lib/Button/Button.component"
 import FormInput from "../Lib/form-input/Form-input.component"
 import { signInWithGooglePopup, signInWithGoogleEmailAndPassword } from "../../utils/Firebase/firebase.utils"
 import './sign-in.styles.scss'
-import { useState } from "react"
 
 const defaultValues = {
     email: '',
@@ -22,15 +22,18 @@ const SignIn = ({}) => {
     }
 
     const logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup()
-        console.log(user)
+        try {
+            await signInWithGooglePopup()
+        } catch (error) {
+            alert(error.code)
+        }
+        
     }
 
     const handleSignInWithEmailAndPassword = async (e) => {
         e.preventDefault()
         try {
-            const { user } = await signInWithGoogleEmailAndPassword(email, password)
-            console.log(' sign in with google email and password', user)
+            await signInWithGoogleEmailAndPassword(email, password)
             resetFields()
         } catch (error) {
             switch (error.code) {
