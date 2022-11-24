@@ -1,9 +1,11 @@
 import { Fragment, useContext } from "react"
 import { Outlet, Link } from "react-router-dom"
 import { ReactComponent as CrownLogo } from "../../../assesets/crown.svg"
+import CartIcon from '../../cart-icon/cart-icon.component'
 import { UserContext } from "../../../contexts/user.context"
 import { signUserOut } from "../../../utils/Firebase/firebase.utils"
 import "./navigation.styles.scss"
+import CartDropdown from "../../cart-dropdown/cart-dropdown.component"
 
 const Navbar = () => {
     const { currentUser } = useContext(UserContext)
@@ -15,7 +17,7 @@ const Navbar = () => {
                     <CrownLogo className='crown-logo' />
                 </Link>
                 <div className='nav-links-container'>
-                    <Link to='test' className="nav-link">
+                    <Link to='/shop' className="nav-link">
                         shop
                     </Link>
                     {
@@ -27,8 +29,9 @@ const Navbar = () => {
                             </Link>
                         )
                     }
-
+                    <CartIcon />
                 </div>
+                <CartDropdown />
             </div>
             <Outlet />
         </Fragment>
