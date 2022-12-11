@@ -1,17 +1,19 @@
 import { createContext, useState } from "react";
 
 export const CartContex = createContext({
-    products: [],
-    isActive: false
+    isActive: false,
+    setIsActive: () => false,
 })
 
 export const CartProvider = ({children}) => {
+    const [isActive, setIsActive] = useState(false)
 
     const value = {
-
+        isActive, 
+        setIsActive
     }
 
     return (
-        <CartContex.Provider >{children}</CartContex.Provider>
+        <CartContex.Provider value={value} >{children}</CartContex.Provider>
     )
 }
